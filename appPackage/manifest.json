@@ -1,0 +1,49 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.28",
+    "version": "1.1.2",
+    "id": "${{TEAMS_APP_ID}}",
+    "developer": {
+        "name": "Atlassian",
+        "websiteUrl": "https://www.atlassian.com",
+        "privacyUrl": "https://www.atlassian.com/legal/privacy-policy",
+        "termsOfUseUrl": "https://www.atlassian.com/legal/cloud-terms-of-service"
+    },
+    "name": {
+        "short": "Atlassian Rovo",
+        "full": "Atlassian Rovo"
+    },
+    "description": {
+        "short": "Connect Microsoft 365 Copilot Cowork to Jira, Confluence, and other Atlassian",
+        "full": "Connect Microsoft 365 Copilot Cowork to Jira, Confluence, and other Atlassian apps through the Atlassian Rovo MCP Server."
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "accentColor": "#4A90D9",
+    "agentSkills": [
+        {
+            "folder": "./skills/jira-project-tracking"
+        }
+    ],
+    "agentConnectors": [
+        {
+            "id": "atlassian-rovo",
+            "displayName": "Atlassian Rovo MCP Server",
+            "description": "Search and update Jira, Confluence, and other Atlassian products using the signed-in user's permissions.",
+            "toolSource": {
+                "remoteMcpServer": {
+                    "mcpServerUrl": "https://mcp.atlassian.com/v2/mcp",
+                    "mcpToolDescription": {
+                        "file": "tools/atlassian-rovo-tools.json"
+                    },
+                    "authorization": {
+                        "type": "OAuthPluginVault",
+                        "referenceId": "${{ATLASSIAN_ROVO_DCR_V2_CONFIGURATION_ID}}"
+                    }
+                }
+            }
+        }
+    ]
+}

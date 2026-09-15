@@ -1,0 +1,191 @@
+{
+  "site": "<your-site>.atlassian.net",
+  "labels": ["cowork-rovo-repro", "demo-data"],
+  "projects": [
+    {
+      "key": "SWE",
+      "methodology": "scrum",
+      "records": [
+        {
+          "seedId": "SWE-REPRO-001",
+          "type": "Epic",
+          "summary": "Copilot Cowork Atlassian integration",
+          "status": "In Progress",
+          "priority": "High",
+          "description": "Deliver and validate the Atlassian Rovo MCP v2 connector for Microsoft 365 Copilot Cowork. Success means repeatable packaging, durable authentication, and verified Jira read/write workflows."
+        },
+        {
+          "seedId": "SWE-REPRO-002",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Story",
+          "summary": "Register Atlassian OAuth with Dynamic Client Registration",
+          "status": "Done",
+          "priority": "Highest",
+          "storyPoints": 5,
+          "description": "Provision an OAuthPluginVault registration from Atlassian OAuth metadata and bind the generated configuration ID into the M365 manifest. Acceptance: DCR registration is reused on a second provision run."
+        },
+        {
+          "seedId": "SWE-REPRO-003",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Story",
+          "summary": "Package the connector with manifest schema v1.28",
+          "status": "Done",
+          "priority": "High",
+          "storyPoints": 3,
+          "description": "Produce a strict v1.28 app package containing icons, connector metadata, and the MCP tool-description artifact. Acceptance: Agents Toolkit validation passes."
+        },
+        {
+          "seedId": "SWE-REPRO-004",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Bug",
+          "summary": "Generated manifest ID does not match Developer Portal app ID",
+          "status": "Done",
+          "priority": "Highest",
+          "description": "The open-plugin importer emitted a deterministic GUID while teamsApp/create generated another app ID, causing teamsApp/update to fail. Resolution: bind manifest.id to TEAMS_APP_ID."
+        },
+        {
+          "seedId": "SWE-REPRO-005",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Bug",
+          "summary": "Tool-description path with leading dot-slash is rejected",
+          "status": "Done",
+          "priority": "High",
+          "description": "The package contained the referenced tool file, but publication reported it missing when the manifest path began with ./. Resolution: use the exact ZIP-relative tools path."
+        },
+        {
+          "seedId": "SWE-REPRO-006",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Story",
+          "summary": "Validate Rovo MCP v2 discovery and Jira operations",
+          "status": "In Progress",
+          "priority": "High",
+          "storyPoints": 5,
+          "description": "Verify resource discovery, deferred tool discovery, Jira reads, Jira writes, and confirmation behavior against the SWE and KAN projects."
+        },
+        {
+          "seedId": "SWE-REPRO-007",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Task",
+          "summary": "Measure refresh-token durability across Cowork sessions",
+          "status": "In Progress",
+          "priority": "Highest",
+          "description": "Test whether offline_access is granted and whether a new Cowork conversation can reuse the Atlassian connection without reconnecting. Capture timestamps and reconnect prompts."
+        },
+        {
+          "seedId": "SWE-REPRO-008",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Task",
+          "summary": "Assess CIMD migration path for the MCP connector",
+          "status": "To Do",
+          "priority": "Medium",
+          "description": "Document how Client ID Metadata Documents could replace DCR and identify Microsoft 365 support gaps, ownership, and migration prerequisites."
+        },
+        {
+          "seedId": "SWE-REPRO-009",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Bug",
+          "summary": "Launch information returns 404 after title acquisition",
+          "status": "To Do",
+          "priority": "Medium",
+          "description": "atk provision acquires a title successfully, but an immediate atk launchinfo request returns NotFound. Determine whether this is propagation delay or a title-service defect."
+        },
+        {
+          "seedId": "SWE-REPRO-010",
+          "parentSeedId": "SWE-REPRO-001",
+          "type": "Story",
+          "summary": "Publish a repeatable connector reproduction runbook",
+          "status": "To Do",
+          "priority": "Medium",
+          "storyPoints": 3,
+          "description": "Document prerequisites, package construction, DCR registration, validation, installation, user consent, test queries, expected evidence, and cleanup."
+        }
+      ]
+    },
+    {
+      "key": "KAN",
+      "methodology": "kanban",
+      "records": [
+        {
+          "seedId": "KAN-REPRO-001",
+          "type": "Task",
+          "summary": "Capture Rovo MCP pilot requirements",
+          "status": "Done",
+          "priority": "High",
+          "description": "Document pilot users, Atlassian products, required read/write scenarios, tenant constraints, and success measures for the Cowork connector."
+        },
+        {
+          "seedId": "KAN-REPRO-002",
+          "type": "Task",
+          "summary": "Complete MCP connector threat model",
+          "status": "In Progress",
+          "priority": "Highest",
+          "description": "Review OAuth token storage, prompt injection boundaries, destructive tool confirmation, audit logging, and least-privilege controls."
+        },
+        {
+          "seedId": "KAN-REPRO-003",
+          "type": "Task",
+          "summary": "Review Atlassian OAuth scopes for least privilege",
+          "status": "In Progress",
+          "priority": "High",
+          "description": "Map each pilot scenario to Rovo MCP scopes and identify whether the DCR client obtains offline_access and only the required product permissions."
+        },
+        {
+          "seedId": "KAN-REPRO-004",
+          "type": "Task",
+          "summary": "Prepare pilot user onboarding checklist",
+          "status": "To Do",
+          "priority": "Medium",
+          "description": "Define install, Atlassian consent, site selection, first read, first write, reconnect validation, and support escalation steps."
+        },
+        {
+          "seedId": "KAN-REPRO-005",
+          "type": "Task",
+          "summary": "Create tenant deployment and rollback runbook",
+          "status": "To Do",
+          "priority": "High",
+          "description": "Document admin publication, allow/block controls, personal versus tenant scope, package versioning, revocation, and uninstall steps."
+        },
+        {
+          "seedId": "KAN-REPRO-006",
+          "type": "Task",
+          "summary": "Establish Rovo credit usage baseline",
+          "status": "To Do",
+          "priority": "Medium",
+          "description": "Run representative search, issue retrieval, and Teamwork Graph scenarios and record credit consumption per call."
+        },
+        {
+          "seedId": "KAN-REPRO-007",
+          "type": "Task",
+          "summary": "Monitor connector reconnect frequency",
+          "status": "To Do",
+          "priority": "High",
+          "description": "Track access-token expiry, refresh attempts, reconnect prompts, and session duration across pilot users."
+        },
+        {
+          "seedId": "KAN-REPRO-008",
+          "type": "Task",
+          "summary": "Define CIMD readiness gate",
+          "status": "To Do",
+          "priority": "Medium",
+          "description": "Set acceptance criteria for Microsoft 365 CIMD support, metadata hosting, client identity validation, and migration from existing DCR registrations."
+        },
+        {
+          "seedId": "KAN-REPRO-009",
+          "type": "Bug",
+          "summary": "Investigate Cowork plugin visibility delay",
+          "status": "To Do",
+          "priority": "Medium",
+          "description": "Measure the interval between successful title acquisition and availability in Cowork Sources and Skills, including launchinfo propagation behavior."
+        },
+        {
+          "seedId": "KAN-REPRO-010",
+          "type": "Task",
+          "summary": "Run pilot go-live review",
+          "status": "To Do",
+          "priority": "High",
+          "description": "Review security findings, authentication durability, functional coverage, support readiness, cost observations, and unresolved platform dependencies."
+        }
+      ]
+    }
+  ]
+}

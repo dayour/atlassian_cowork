@@ -1,0 +1,82 @@
+{
+  "tools": [
+    {
+      "name": "atlassianUserInfo",
+      "description": "Get the current authenticated Atlassian user's account information.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Get Atlassian User Info",
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "getAccessibleAtlassianResources",
+      "description": "List Atlassian sites and apps accessible to the authenticated user, including cloud IDs required by other tools.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "List Accessible Atlassian Resources",
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "discover",
+      "description": "Search the deferred Atlassian tool catalog and return matching tool schemas and operations.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Discover Atlassian Tools",
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "executeRead",
+      "description": "Run a read-only Atlassian operation returned by discover.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Read Atlassian Data",
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "executeWrite",
+      "description": "Run a non-destructive write operation returned by discover.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Update Atlassian Data",
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "executeDestructive",
+      "description": "Run a destructive Atlassian operation returned by discover.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Delete Atlassian Data",
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    }
+  ]
+}
