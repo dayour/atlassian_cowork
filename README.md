@@ -38,6 +38,10 @@ Provision only in a test tenant. Generated environment files can contain deploym
 
 The full wiki is published at [dayour.github.io/atlassian_cowork](https://dayour.github.io/atlassian_cowork/). Start with the [DCR finding](https://dayour.github.io/atlassian_cowork/investigation/findings) and [controlled test matrix](https://dayour.github.io/atlassian_cowork/reproduction/test-matrix).
 
+### DCR Enabled Build v1.1.2
+
+The [full build and installation guide](https://dayour.github.io/atlassian_cowork/reproduction/dcr-enabled-build-v1-1-2) explains the DCR fix, provisioning-time registration, manifest binding, environment configuration, ZIP packaging, Personal installation, manual upload, and tenant publication. It distinguishes verified behavior from untested refresh and distribution scenarios. Source is published; no installable GitHub Release is claimed. Each independent publisher must provision their own app and authentication configuration.
+
 ## Status
 
 - Explicit Toolkit DCR registration: verified.

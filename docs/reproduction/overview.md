@@ -5,6 +5,8 @@ sidebar_position: 1
 
 This guide reproduces the Atlassian Rovo MCP v2 connection in Microsoft 365 Copilot Cowork using explicit Dynamic Client Registration through Microsoft 365 Agents Toolkit.
 
+For the complete version-specific procedure, see [DCR Enabled Build v1.1.2](dcr-enabled-build-v1-1-2.md): fix details, configuration, generated ZIP inspection, Personal installation, manual upload, tenant publication, and verification limits.
+
 ## Prerequisites
 
 - Node.js 20 or later
