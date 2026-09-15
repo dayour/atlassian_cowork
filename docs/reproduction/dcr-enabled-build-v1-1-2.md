@@ -7,7 +7,7 @@ description: The v1.1.2 DCR fix, configuration contract, packaging, Personal ins
 Build **v1.1.2** connects Microsoft 365 Copilot Cowork to the **Atlassian Rovo MCP v2** server using **provisioning-time Dynamic Client Registration (DCR)** and an explicit authentication-configuration reference. This is an independent interoperability reproduction, not an official Atlassian distribution.
 
 :::important Build status
-The source is published on [GitHub](https://github.com/dayour/atlassian_cowork). As checked on September 15, 2026, no GitHub Release or downloadable release asset has been published. The generated installation ZIP is local to a provisioned environment and is deliberately excluded from source control. Downloading the repository is not the same as downloading an installable app.
+Get the versioned provisioning template, source ZIP, and checksums from [GitHub Release v1.1.2](https://github.com/dayour/atlassian_cowork/releases/tag/v1.1.2). The template is also available as `@dayour/atlassian-cowork` in [GitHub Packages](https://github.com/dayour/atlassian_cowork/packages). These are source distributions, not preconfigured installation ZIPs. The generated Microsoft 365 installation ZIP is local to your provisioned environment and is deliberately excluded from the public assets.
 :::
 
 ## What changed
@@ -143,11 +143,12 @@ Use a Microsoft 365 test tenant with Cowork access and custom app acquisition pe
 ```powershell
 git clone https://github.com/dayour/atlassian_cowork.git
 Set-Location atlassian_cowork
+git checkout v1.1.2
 npm install --global @microsoft/m365agentstoolkit-cli@1.1.16
 atk --version
 ```
 
-The checked-in package reports version 1.1.2. Cloning `main` is not a version-pinned GitHub Release. Record the commit with `git rev-parse HEAD` for repeatable testing. `npm ci` and `npm run build` are needed to build the documentation, not to host the remote Atlassian MCP server.
+The checked-in package reports version 1.1.2. Checking out the release tag pins the source; `main` can contain later changes. Record the commit with `git rev-parse HEAD` for repeatable testing. `npm ci` and `npm run build` are needed to build the documentation, not to host the remote Atlassian MCP server.
 
 For a fresh checkout only, create the local environment file without overwriting an existing one:
 
@@ -245,7 +246,24 @@ Unlike provisioning, this lifecycle hardcodes `scope: tenant`; changing `AGENT_S
 
 A GitHub Release and a Microsoft 365 installation are separate operations. Creating a release does not register OAuth clients, upload a tenant app, or grant user consent. Before publishing a ZIP as a release asset, establish its intended audience, confirm the auth configuration's supported distribution scope, inspect the contents, and state exactly which provisioning context it requires. Do not describe a tenant-bound ZIP as a universal installer.
 
-For independent reproducers, the currently supported distribution is source plus the provisioning instructions above. Each publisher creates their own app and DCR configuration. No ready-to-install GitHub Release is claimed by this guide.
+The v1.1.2 release contains:
+
+| Asset | Purpose |
+| --- | --- |
+| `dayour-atlassian-cowork-1.1.2.tgz` | Focused provisioning template with manifest, tool catalog, Jira skill, environment example, and lifecycle |
+| `atlassian-cowork-v1.1.2-source.zip` | Complete tagged source, including documentation and packaging workflow |
+| `SHA256SUMS.txt` | SHA-256 checksums for the two archives |
+
+Verify a downloaded file with `Get-FileHash -Algorithm SHA256` and compare it with the checksum list. Extract the `.tgz` using `tar -xzf dayour-atlassian-cowork-1.1.2.tgz`, enter its `package` directory, and follow the provisioning steps above. Never upload either source archive directly to Teams.
+
+GitHub Packages hosts the same template as an npm package, with no runtime dependencies or install scripts. GitHub requires npm registry authentication even for public packages. Use a personal access token (classic) with `read:packages` and access to the package, supplied directly to the local npm login prompt:
+
+```powershell
+npm login --scope=@dayour --auth-type=legacy --registry=https://npm.pkg.github.com
+npm pack @dayour/atlassian-cowork@1.1.2 --registry=https://npm.pkg.github.com
+```
+
+The public release assets are available without npm authentication. Each independent publisher still creates their own app and DCR configuration. The release workflow publishes only allowlisted template files, checks archive contents, and creates checksums; it does not provision or publish anything to a Microsoft 365 tenant. See the [template README](https://github.com/dayour/atlassian_cowork/blob/main/distribution/README.md) for extraction details.
 
 ## Verification and limitations
 

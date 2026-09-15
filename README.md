@@ -40,7 +40,9 @@ The full wiki is published at [dayour.github.io/atlassian_cowork](https://dayour
 
 ### DCR Enabled Build v1.1.2
 
-The [full build and installation guide](https://dayour.github.io/atlassian_cowork/reproduction/dcr-enabled-build-v1-1-2) explains the DCR fix, provisioning-time registration, manifest binding, environment configuration, ZIP packaging, Personal installation, manual upload, and tenant publication. It distinguishes verified behavior from untested refresh and distribution scenarios. Source is published; no installable GitHub Release is claimed. Each independent publisher must provision their own app and authentication configuration.
+The [full build and installation guide](https://dayour.github.io/atlassian_cowork/reproduction/dcr-enabled-build-v1-1-2) explains the DCR fix, provisioning-time registration, manifest binding, environment configuration, ZIP packaging, Personal installation, manual upload, and tenant publication. It distinguishes verified behavior from untested refresh and distribution scenarios. Each independent publisher must provision their own app and authentication configuration.
+
+Download the provisioning template, complete source ZIP, and checksums from [Release v1.1.2](https://github.com/dayour/atlassian_cowork/releases/tag/v1.1.2). The same template is distributed as [`@dayour/atlassian-cowork`](https://github.com/dayour/atlassian_cowork/packages) through GitHub Packages. See [download and extraction instructions](distribution/README.md). These are source distributions, not preconfigured Teams installation ZIPs. GitHub's npm registry requires authentication; the public release assets provide an alternative download route.
 
 ## Status
 

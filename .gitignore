@@ -18,3 +18,4 @@ build/
 
 # generated files
 appPackage/.generated
+.release-output/
