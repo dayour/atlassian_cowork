@@ -3,7 +3,7 @@ title: Controlled Test Matrix
 sidebar_position: 2
 ---
 
-The omitted-authorization claim needs a clean A/B test using unique names, manifest IDs, and Personal titles.
+The omitted-authorization claim needs a clean A/B test using unique names, manifest IDs, and Personal titles. See the [current A/B validation record](./dcr-ab-validation.md) for observed results and the remaining authentication gate; the run is not complete.
 
 | Variable | A: documented omission | B: explicit Toolkit registration |
 | --- | --- | --- |
@@ -31,11 +31,11 @@ The omitted-authorization claim needs a clean A/B test using unique names, manif
 
 ## Controls
 
-- Remove all previous test titles before starting.
-- Wait for catalog uninstall propagation.
+- Use fresh app IDs and verify the selected Personal title ID against provisioning output. Disable competing Atlassian variants during each task; do not delete existing user installations without approval.
+- Verify installed and enabled state after catalog propagation, and record unexpected duplicate or missing entries.
 - Use a fresh browser profile for each variant.
 - Capture network traces with secrets redacted.
 - Do not infer registration from a consent screen alone.
 - Repeat each variant at least twice to distinguish caching from deterministic behavior.
 
-Until this matrix is completed, the repository records the omission path as **not working in the original reproduction**, not as universally unsupported.
+The original stale-title reproduction is **inconclusive**. The current isolated attempt and its remaining limitations are recorded separately. Until this matrix is completed, neither runtime DCR success nor a universal omission failure is established.

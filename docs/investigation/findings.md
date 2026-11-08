@@ -5,7 +5,7 @@ sidebar_position: 2
 
 ## Conclusion
 
-The evidence shows that Atlassian's DCR implementation is functional. The gap was the creation and binding of Microsoft's authentication configuration.
+Toolkit-based DCR registration and explicit authentication binding were demonstrated. That is a provisioning-time workaround, not a verified fix for Cowork's documented runtime DCR behavior when `authorization` is omitted. The earlier omission experiment was confounded by stale title selection and is inconclusive.
 
 | Claim | Evidence | Status |
 | --- | --- | --- |
@@ -41,6 +41,8 @@ The current agent-connectors page uses a different representation, `DynamicClien
 
 The defensible statement is:
 
-> In this Cowork reproduction, the documented manifest-only omission path did not yield a usable authenticated connector. Pre-provisioning DCR through Agents Toolkit and explicitly binding the resulting Enterprise Token Store configuration did.
+> Pre-provisioning DCR through Agents Toolkit and explicitly binding the resulting Enterprise Token Store configuration produced a working connection reported by the owner. The original omission experiment does not establish success or failure because the selected title was not controlled.
 
-This wording preserves the observed result while acknowledging that the original test was later confounded by a stale shared title. A clean A/B test remains necessary to make a broader platform claim.
+A clean A/B test must verify the packaged manifests, distinct Personal title identities, connection behavior, and an actual read-only MCP tool result. Successful packaging, publication, or a consent screen alone does not meet that requirement. The v1.1.2 release must not be treated as evidence of automatic runtime DCR.
+
+See the [current A/B validation record](../reproduction/dcr-ab-validation.md). B subsequently completed an authenticated read with a successful server-recorded MCP event attributed to its exact Personal title. Earlier no-tools tasks had incomplete isolation: an original Atlassian installation was still enabled. The earlier callback observation is historical, and neither it nor B's successful explicit registration proves automatic runtime DCR for A.

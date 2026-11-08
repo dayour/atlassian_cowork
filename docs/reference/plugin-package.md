@@ -20,7 +20,7 @@ appPackage/
             `-- repro-notes.md
 ```
 
-The working connector targets `https://mcp.atlassian.com/v2/mcp` and explicitly binds its generated DCR authentication configuration using `OAuthPluginVault.referenceId`.
+The explicit-registration connector targets `https://mcp.atlassian.com/v2/mcp` and binds its generated DCR authentication configuration using `OAuthPluginVault.referenceId`. A successful authenticated read is recorded for the fresh B control in the [A/B evidence](../reproduction/dcr-ab-validation.md); this is not proof of automatic registration when authorization is omitted.
 
 ```json
 "remoteMcpServer": {

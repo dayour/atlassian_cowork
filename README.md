@@ -6,12 +6,12 @@ A reproducible Microsoft 365 app package, Jira project-tracking skill, and techn
 
 ## Core finding
 
-An earlier Cowork article said that connectors for DCR-enabled MCP servers could omit the manifest `authorization` object. That path did not produce a usable connection in this reproduction. The working package uses:
+An earlier Cowork article said that connectors for DCR-enabled MCP servers could omit the manifest `authorization` object. The original omission experiment was confounded by stale title selection. The verified explicit-registration control uses:
 
 1. `dcr/register` in `m365agents.yml` to register a client with Atlassian and create an authentication configuration in the Microsoft Enterprise Token Store.
 2. `OAuthPluginVault.referenceId` in `appPackage/manifest.json` to bind the connector to that stored configuration.
 
-Microsoft's dedicated DCR documentation, updated in August 2026, now describes this explicit auth-config pattern. This repository records the documentation drift, evidence boundaries, refresh-token gap, and CIMD questions without claiming that automatic runtime DCR fails in every tenant.
+Microsoft's dedicated DCR documentation, updated in August 2026, now describes this explicit auth-config pattern. B completed an authenticated read with a successful MCP event attributed to its exact Personal title. This verifies the provisioning-time workaround, not automatic runtime DCR. See the [current A/B evidence](docs/reproduction/dcr-ab-validation.md), including the installed-plugin isolation checks and remaining limitations.
 
 ## Repository contents
 
@@ -40,7 +40,7 @@ The full wiki is published at [dayour.github.io/atlassian_cowork](https://dayour
 
 ### DCR Enabled Build v1.1.2
 
-The [full build and installation guide](https://dayour.github.io/atlassian_cowork/reproduction/dcr-enabled-build-v1-1-2) explains the DCR fix, provisioning-time registration, manifest binding, environment configuration, ZIP packaging, Personal installation, manual upload, and tenant publication. It distinguishes verified behavior from untested refresh and distribution scenarios. Each independent publisher must provision their own app and authentication configuration.
+The [full build and installation guide](https://dayour.github.io/atlassian_cowork/reproduction/dcr-enabled-build-v1-1-2) explains the explicit-registration workaround, provisioning-time registration, manifest binding, environment configuration, ZIP packaging, Personal installation, manual upload, and tenant publication. It distinguishes verified behavior from untested refresh and distribution scenarios. Each independent publisher must provision their own app and authentication configuration.
 
 Download the provisioning template, complete source ZIP, and checksums from [Release v1.1.2](https://github.com/dayour/atlassian_cowork/releases/tag/v1.1.2). The same template is distributed as [`@dayour/atlassian-cowork`](https://github.com/dayour/atlassian_cowork/packages) through GitHub Packages. See [download and extraction instructions](distribution/README.md). These are source distributions, not preconfigured Teams installation ZIPs. GitHub's npm registry requires authentication; the public release assets provide an alternative download route.
 
@@ -48,8 +48,8 @@ Download the provisioning template, complete source ZIP, and checksums from [Rel
 
 - Explicit Toolkit DCR registration: verified.
 - Atlassian consent and authorization-code callback: verified.
-- Authenticated Rovo MCP call: reported working by the project owner.
-- Automatic DCR with omitted `authorization`: not yet isolated in a clean A/B title test.
+- Authenticated Rovo MCP call: verified for B through a successful server-recorded MCP event with the matching Personal title.
+- Automatic DCR with omitted `authorization`: fresh A/B packages tested; runtime registration remains unverified.
 - Refresh-token issuance and post-expiry renewal: not yet captured.
 - Cowork CIMD configuration path: no public Microsoft guidance identified.
 
